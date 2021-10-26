@@ -1,0 +1,3 @@
+C:/Users/alext/CLionProjects/labPOO/tema1/cmake-build-debug/CMakeFiles/tema1.dir
+C:/Users/alext/CLionProjects/labPOO/tema1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/alext/CLionProjects/labPOO/tema1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
