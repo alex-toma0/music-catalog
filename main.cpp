@@ -4,56 +4,56 @@
 #include <bits/stdc++.h>
 class Melodie{
 private:
-    std::string nume, lungime, album;
-    int pozitie;
+    std::string nume, album;
+    int lungime, pozitie;
 public:
-    Melodie(const std::string &nume, const std::string &lungime, const std::string &album, const int &pozitie)
+    Melodie(const std::string &nume, const int &lungime, const std::string &album, const int &pozitie)
     : nume{nume}, lungime{lungime}, album{album}, pozitie{pozitie} {}
 
-    std::string getNume() {
+    std::string getNume() const {
         return nume;
     }
 
-    std::string getLungime() {
+    int getLungime() const {
         return lungime;
     }
 
-    std::string getAlbum() {
+    std::string getAlbum() const {
         return album;
     }
 
-    int getPozitie() {
+    int getPozitie() const {
         return pozitie;
-    };
+    }
 
-    // operator >>
+    // operator <<
     friend std::ostream &operator << (std::ostream &out, const Melodie &m) {
-        out << "Nume: " << m.nume << ", " << "Lungime: " << m.lungime
-        << ", Album: "<< m.album << ", Pozitia pe album: " << m.pozitie << "\n";
+        out << "Nume: " << m.nume << ", Lungime: " << m.lungime / 60 << ":"
+        << m.lungime % 60 << ", Album: "<< m.album << ", Pozitia pe album: "
+        << m.pozitie << "\n";
         return out;
     }
 };
 
 class Album {
 private:
-    std::string titlu, lungime;
-    int nr_melodii, an;
+    std::string titlu;
+    int lungime, nr_melodii, an;
     std::vector<Melodie> melodii;
 
-
 public:
-    std::string getTitlu() {
+    std::string getTitlu() const {
         return titlu;
     }
 
-    std::string getLungime() {
+    int getLungime() const {
         return lungime;
     }
-    int getNr() {
+    int getNr() const {
         return nr_melodii;
     }
 
-    int getAn() {
+    int getAn() const {
         return an;
     }
 
@@ -61,16 +61,23 @@ public:
         return melodii;
     }
 
-    // constructor init
-    Album(const std::string &titlu, const std::string &lungime, const int &nr_melodii,
-          const int an,
-          const std::vector<Melodie> melodii) : titlu{titlu}, lungime{lungime}, an{an}, nr_melodii{nr_melodii},
-          melodii{melodii} {}
 
-    // operator >>
+    // constructor init
+    Album(const std::string &titlu, const int &nr_melodii,
+          const int &an,
+          const std::vector<Melodie> &melodii) : titlu{titlu},  nr_melodii{nr_melodii}, an{an},
+          melodii{melodii} {
+        lungime = 0;
+        for(int i=0; i<nr_melodii;i++) {
+            lungime += melodii[i].getLungime();
+        }
+    }
+
+    // operator <<
     friend std::ostream &operator << (std::ostream &out, const Album &a) {
-        out << "Titlu album: " << a.titlu << ", " << "Lungime: " << a.lungime
-            << ", " << "Nr. melodii: " << a.nr_melodii << "\nMelodii:\n";
+        out << "Titlu album: " << a.titlu  << ", Lungime: " << a.lungime / 3600 << ":"
+                                             << a.lungime / 60 << ":" << a.lungime % 60
+                                             << ", Nr. melodii: " << a.nr_melodii << "\nMelodii:\n";
         for(int i=0; i<a.nr_melodii; i++) {
             out << a.melodii[i];
         }
@@ -87,25 +94,25 @@ private:
 
 public:
 
-    std::string getNume() {
+    std::string getNume() const {
         return nume;
     }
 
-    std::string getGen() {
+    std::string getGen() const {
         return gen_muzical;
     }
 
-    std::string getTara() {
+    std::string getTara() const {
         return tara;
     }
 
-    int getNr() {
+    int getNr() const {
         return nr_albume;
     }
 
     // constructor init
-    Artist(const std::string nume, const std::string gen_muzical, const std::string tara, const int nr_albume,
-           const std::vector<Album> albume)
+    Artist(const std::string &nume, const std::string &gen_muzical, const std::string &tara, const int &nr_albume,
+           const std::vector<Album> &albume)
             : nume{nume}, gen_muzical{gen_muzical}, tara{tara}, nr_albume{nr_albume}, albume{albume}  {}
 
     // constructor de copiere
@@ -131,7 +138,7 @@ public:
 
     }
 
-    // operator >>
+    // operator <<
     friend std::ostream &operator << (std::ostream &out, const Artist &a) {
         out << "Nume artist: " << a.nume << ", Gen muzical: " << a.gen_muzical
              << ", Tara: " << a.tara<< ", Nr albume: " << a.nr_albume << "\nAlbume: \n";
@@ -152,16 +159,16 @@ public:
         }
 
         if (tip == "melodie") {
-            for(int i=0; i<nr_albume; i++)
-                for(int j=0; j < albume[i].getNr(); j++)
-                    if ( albume[i].getMelodii()[j].getNume() == item) {
-                        std::cout << nume << " - " << albume[i].getMelodii()[j].getNume() << ", a "
-                                  << albume[i].getMelodii()[j].getPozitie() << "-a melodie "
-                                                                               "de pe albumul "
-                                  << albume[i].getMelodii()[j].getAlbum()
+            for(int i=0; i<nr_albume; i++) {
+                std::vector<Melodie> m = albume[i].getMelodii();
+                for (int j = 0; j < albume[i].getNr(); j++)
+                    if (m[j].getNume() == item) {
+                        std::cout << nume << " - " << m[j].getNume() << ", a "
+                                  << m[j].getPozitie() << "-a melodie de pe albumul " << m[j].getAlbum()
                                   << "\n";
                         return;
                     }
+            }
             std::cout << "Melodia nu a fost gasita!" << "\n";
         }
     }
@@ -190,32 +197,39 @@ int main() {
 
     // adaugare
     std::vector<Artist> artisti;
-    std::vector<Album> a;
-    std::vector<Melodie> m;
-    m.push_back(Melodie("Battery","5:13","Master of Puppets",1));
-    m.push_back(Melodie("Master of Puppets","8:36","Master of Puppets",2));
-    m.push_back(Melodie("The Thing That Should Not Be","6:36","Master of Puppets",3));
-    m.push_back(Melodie("Welcome Home (Sanitarium)","6:27","Master of Puppets",4));
-    m.push_back(Melodie("Disposable Heroes","8:17","Master of Puppets",5));
-    m.push_back(Melodie("Leper Messiah","5:40","Master of Puppets",6));
-    m.push_back(Melodie("Orion","8:27","Master of Puppets",7));
-    m.push_back(Melodie("Damage, Inc.","5:32","Master of Puppets",8));
-    a.push_back(Album("Master of Puppets", "54:47", 8, 1986, m));
-    Artist metallica("Metallica", "Thrash Metal", "USA", 1 ,a);
-    m.clear();
-    a.clear();
-    m.push_back(Melodie("One More Time","5:20","Discovery",1));
-    m.push_back(Melodie("Aerodynamic","3:27","Discovery",2));
-    m.push_back(Melodie("Digital Love","4:58","Discovery",3));
-    m.push_back(Melodie("Harder, Better, Faster, Stronger","3:45","Discovery",4));
-    m.push_back(Melodie("Crescendolis","3:31","Discovery",5));
-    m.push_back(Melodie("Nightvision","1:44","Discovery",6));
-    m.push_back(Melodie("Superheroes","3:57","Discovery",7));
-    m.push_back(Melodie("High Life","3:22","Discovery",8));
-    a.push_back(Album("Discovery", "30:40", 8, 2001, m));
-    Artist daft_punk("Daft Punk", "House", "France", 1 ,a);
-    daft_punk.search("melodie", "Aerodynamic");
-    metallica.likeness(daft_punk);
+    std::vector<Album> albume;
+    std::vector<Melodie> melodii;
+
+    melodii.push_back(Melodie("Battery",130,"Master of Puppets",1));
+    melodii.push_back(Melodie("Master of Puppets",250,"Master of Puppets",2));
+    melodii.push_back(Melodie("The Thing That Should Not Be",333,"Master of Puppets",3));
+    melodii.push_back(Melodie("Welcome Home (Sanitarium)",425,"Master of Puppets",4));
+    melodii.push_back(Melodie("Disposable Heroes",180,"Master of Puppets",5));
+    melodii.push_back(Melodie("Leper Messiah",345,"Master of Puppets",6));
+    melodii.push_back(Melodie("Orion",730,"Master of Puppets",7));
+    melodii.push_back(Melodie("Damage, Inc.",617,"Master of Puppets",8));
+
+
+
+     albume.push_back(Album("Master of Puppets", 8, 1986, melodii));
+     Artist metallica("Metallica", "Thrash Metal", "USA", 1 ,albume);
+     melodii.clear();
+     albume.clear();
+     metallica.search("melodie", "Orion");
+     std::cout << metallica;
+
+     melodii.push_back(Melodie("One More Time",320,"Discovery",1));
+     melodii.push_back(Melodie("Aerodynamic",445,"Discovery",2));
+     melodii.push_back(Melodie("Digital Love",458,"Discovery",3));
+     melodii.push_back(Melodie("Harder, Better, Faster, Stronger",345,"Discovery",4));
+     melodii.push_back(Melodie("Crescendolis",331,"Discovery",5));
+     melodii.push_back(Melodie("Nightvision",144,"Discovery",6));
+     melodii.push_back(Melodie("Superheroes",357,"Discovery",7));
+     melodii.push_back(Melodie("High Life",322,"Discovery",8));
+     albume.push_back(Album("Discovery", 8, 2001, melodii));
+     Artist daft_punk("Daft Punk", "House", "France", 1 ,albume);
+     daft_punk.search("melodie", "Aerodynamic");
+     metallica.likeness(daft_punk);
 
 
 
