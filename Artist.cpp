@@ -64,12 +64,12 @@ if (tip == "album") {
 }
 
 if (tip == "melodie") {
-    for(int i=0; i<albume.size(); i++) {
+    for (int i=0; i<albume.size(); i++) {
         std::vector<Melodie> m = albume[i].getMelodii();
         for (int j = 0; j < albume[i].getMelodii().size(); j++)
             if (m[j].getNume() == item) {
                 std::cout << nume << " - " << m[j].getNume() << ", a "
-                          << m[j].getPozitie() << "-a melodie de pe albumul " << m[j].getAlbum()
+                          << j+1 << "-a melodie de pe albumul " << albume[i].getTitlu()
                           << "\n";
                 return;
             }
@@ -77,6 +77,7 @@ if (tip == "melodie") {
     std::cout << "Melodia nu a fost gasita!" << "\n";
 }
 }
+
 // functie care determina daca doi artisti seamana (bazat pe genul muzical)
 void Artist::likeness(const Artist &b) {
 std::vector<std::string> tok;

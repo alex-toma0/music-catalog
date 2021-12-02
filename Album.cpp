@@ -38,7 +38,8 @@ std::ostream &operator << (std::ostream &out, const Album &a) {
         << a.lungime / 60 << ":" << a.lungime % 60
         << ", Nr. melodii: " << a.melodii.size() << "\nMelodii:\n";
     for(int i=0; i<a.melodii.size(); i++) {
-        out << a.melodii[i];
+
+        out << i+1 <<". " << a.melodii[i];
     }
 
     return out;
