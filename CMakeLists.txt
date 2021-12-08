@@ -1,6 +1,12 @@
-cmake_minimum_required(VERSION 3.20)
-project(tema1)
-
+cmake_minimum_required(VERSION 3.21)
+project(music_catalog)
+if (MSVC)
+    add_compile_options(/W4)
+else ()
+    add_compile_options(-Wall -Wextra -pedantic -g)
+    if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+        add_compile_options(-stdlib=libstdc++)
+    endif ()
+endif ()
 set(CMAKE_CXX_STANDARD 14)
-
-add_executable(tema1 main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h)
+add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h)
