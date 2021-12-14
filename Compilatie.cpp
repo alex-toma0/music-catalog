@@ -20,7 +20,7 @@ std::ostream& Compilatie::printAlbum(std::ostream &out) const {
     out << "Titlu album: " << getTitlu() << ", Lungime: " << getLungime() / 3600 << ":"
         << getLungime() / 60 << ":" << getLungime() % 60
         << ", Nr. melodii: " << getMelodii().size() << "\nMelodii:\n";
-    for (int i = 0; i < getMelodii().size(); i++) {
+    for (size_t i = 0; i < getMelodii().size(); i++) {
 
         out << i + 1 << ". " << getMelodii()[i] << "de pe albumul " << getParinte()[i] << "\n";
     }

@@ -67,12 +67,12 @@ std::ostream &operator<<(std::ostream &out, const Artist &a) {
     out << "Nume artist: " << a.nume << ", Gen muzical: " << a.gen_muzical
         << ", Tara: " << a.tara << ", Nr albume: " << a.albume_studio.size() + a.compilatii.size()
         << "\nAlbume Studio: \n";
-    for (int i = 0; i < a.albume_studio.size(); i++)
+    for (size_t i = 0; i < a.albume_studio.size(); i++)
         out << a.albume_studio[i];
 
     out << "\nCompilatii: \n";
 
-    for (int i = 0; i < a.compilatii.size(); i++)
+    for (size_t i = 0; i < a.compilatii.size(); i++)
         out << a.compilatii[i];
     return out;
 
@@ -81,14 +81,14 @@ std::ostream &operator<<(std::ostream &out, const Artist &a) {
 // functie de search
 void Artist::search(std::string tip, std::string item) {
     if (tip == "album") {
-        for (int i = 0; i < albume_studio.size(); i++)
+        for (size_t i = 0; i < albume_studio.size(); i++)
             if (albume_studio[i].getTitlu() == item) {
                 std::cout << nume << " - " << albume_studio[i].getTitlu();
                 return;
             }
 
 
-        for (int i = 0; i < compilatii.size(); i++)
+        for (size_t i = 0; i < compilatii.size(); i++)
             if (compilatii[i].getTitlu() == item) {
                 std::cout << nume << " - " << compilatii[i].getTitlu();
                 return;
@@ -99,9 +99,9 @@ void Artist::search(std::string tip, std::string item) {
     }
 
     if (tip == "melodie") {
-        for (int i = 0; i < albume_studio.size(); i++) {
+        for (size_t i = 0; i < albume_studio.size(); i++) {
             std::vector<Melodie> m = albume_studio[i].getMelodii();
-            for (int j = 0; j < albume_studio[i].getMelodii().size(); j++)
+            for (size_t j = 0; j < albume_studio[i].getMelodii().size(); j++)
                 if (m[j].getNume() == item) {
                     std::cout << nume << " - " << m[j].getNume() << ", a "
                               << j + 1 << "-a melodie de pe albumul " << albume_studio[i].getTitlu()
@@ -109,9 +109,9 @@ void Artist::search(std::string tip, std::string item) {
                     return;
                 }
         }
-        for (int i = 0; i < compilatii.size(); i++) {
+        for (size_t i = 0; i < compilatii.size(); i++) {
             std::vector<Melodie> m = compilatii[i].getMelodii();
-            for (int j = 0; j < compilatii[i].getMelodii().size(); j++)
+            for (size_t j = 0; j < compilatii[i].getMelodii().size(); j++)
                 if (m[j].getNume() == item) {
                     std::cout << nume << " - " << m[j].getNume() << ", a "
                               << j + 1 << "-a melodie de pe compilatia " << compilatii[i].getTitlu()
@@ -131,7 +131,7 @@ void Artist::likeness(const Artist &b) {
     while (getline(gen, temp, ' ')) {
         tok.push_back(temp);
     }
-    for (int i = 0; i < tok.size(); i++) {
+    for (size_t i = 0; i < tok.size(); i++) {
         if (b.gen_muzical.find(tok[i]) != std::string::npos) {
             std::cout << nume << " similar cu " << b.nume << "\n";
             return;
