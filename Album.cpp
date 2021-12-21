@@ -3,8 +3,8 @@
 //
 
 #include "Album.h"
-#include <iostream>
-#include <vector>
+
+size_t previous_shuffle = -1;
 
 std::string Album::getTitlu() const {
     return titlu;
@@ -22,11 +22,7 @@ int Album::getAn() const {
     return an;
 }
 
-//constr de baza
-Album::Album() {}
 
-// destructor
-Album::~Album() {}
 // constructor init
 Album::Album(const std::string &titlu,
              const int &an,
@@ -42,4 +38,8 @@ std::ostream &operator<<(std::ostream &out, const Album &a) {
     return a.printAlbum(out);
 
 }
+
+
+
+
 

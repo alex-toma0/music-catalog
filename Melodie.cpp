@@ -3,23 +3,27 @@
 //
 
 #include "Melodie.h"
+
 #include <iostream>
 
 Melodie::Melodie(const std::string &nume, const int &lungime)
         : nume{nume}, lungime{lungime} {}
 
-std::string Melodie::getNume() const{
+std::string Melodie::getNume() const {
     return nume;
 }
 
-int Melodie::getLungime() const{
+int Melodie::getLungime() const {
     return lungime;
 }
 
 
 // operator <<
-std::ostream &operator << (std::ostream &out, const Melodie &m) {
-    out << "Nume: " << m.nume << ", Lungime: " << m.lungime / 60 << ":"
-        << m.lungime % 60 << "\n";
+std::ostream &operator<<(std::ostream &out, const Melodie &m) {
+    out << "Nume: " << m.nume << ", Lungime: " << m.lungime / 60 << ":";
+    if (m.lungime % 60 < 10) {
+        out << "0" << m.lungime % 60;
+    } else
+        out << m.lungime % 60 << "\n";
     return out;
 }

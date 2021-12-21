@@ -39,6 +39,7 @@ public:
            const std::vector<Compilatie> &compilatii);
 
     Artist(const std::vector<AlbumStudio> &albume_studio);
+
     Artist(const std::vector<Compilatie> &compilatii);
 
     // constructor de copiere
@@ -61,8 +62,6 @@ public:
 
     // functii care insereaza albume noi
     void insertAlbumStudio(const AlbumStudio &albume_studio);
-
-
 
 };
 
