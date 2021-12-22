@@ -11,13 +11,16 @@ else ()
 endif()
 
 
-
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_mixer REQUIRED)
-set(SOURCE_FILES main.cpp)
+
 
 add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h)
 target_link_libraries(music_catalog SDL2::Main SDL2::Mixer)
+
+
+
+
 
 
