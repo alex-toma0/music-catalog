@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.5.1)
 project(music_catalog)
 set(CMAKE_CXX_STANDARD 14)
 if (MSVC)
