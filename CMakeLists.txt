@@ -11,7 +11,6 @@ else ()
     endif ()
 endif()
 
-add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h)
 
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -28,12 +27,14 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 endif()
 
 add_subdirectory(external/SDL)
-add_subdirectory(external/SDL_mixer)
+add_subdirectory(external/SDL2_mixer)
+add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h)
 target_include_directories(${PROJECT_NAME}
         PUBLIC external/SDL/include
-        PUBLIC external/SDL_mixer/include
+        PUBLIC external/SDL2_mixer/include
         )
-target_link_libraries(${PROJECT_NAME} SDL2main SDL2 SDL2_mixer)
+
+target_link_libraries(music_catalog SDL2main SDL2 SDL2_mixer)
 
 
 
