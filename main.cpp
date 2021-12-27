@@ -64,7 +64,7 @@ int main() {
                             )}
     );
 
-
+    std::cout << Metallica;
     try {
         // play la prima compilatie, incepand de la prima melodie.
         Metallica.getCompilatii()[0].play(1);
