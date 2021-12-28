@@ -20,6 +20,7 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
 endif()
 
 add_subdirectory(external/SDL)
+add_subdirectory(external/SDL_mixer)
 add_subdirectory(external/SDL2_mixer)
 add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h)
 if (MSVC)
