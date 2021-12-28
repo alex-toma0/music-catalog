@@ -2,9 +2,6 @@
 	path = external/SDL
 	url = https://github.com/libsdl-org/SDL
 
-[submodule "external/SDL_mixer"]
-    path = external/SDL_mixer
-    url = https://github.com/libsdl-org/SDL_mixer
 [submodule "external/SDL2_mixer"]
 	path = external/SDL2_mixer
 	url = https://github.com/paladin-t/sdl_mixer
