@@ -14,8 +14,9 @@
 #include "SDL.h"
 #include "Melodie.h"
 #include "Exception.h"
+#include "GlobalShuffle.h"
 
-extern size_t previous_shuffle;
+//extern size_t previous_shuffle;
 
 class Album {
 

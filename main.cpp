@@ -7,6 +7,7 @@
 #include "AlbumStudio.h"
 #include "Exception.h"
 #include "AlbumFactory.h"
+#include "GlobalShuffle.h"
 
 int main() {
 
@@ -65,10 +66,11 @@ int main() {
     );
 
     //std::cout << Metallica;
+
     try {
         // play la prima compilatie, incepand de la prima melodie.
-        Metallica.getCompilatii()[0].play(1);
-        //Metallica.getCompilatii()[0].shuffle();
+        //Metallica.getCompilatii()[0].play(1);
+        Metallica.getCompilatii()[0].shuffle();
 
     }
     catch (
@@ -84,6 +86,7 @@ int main() {
 
     //Album* a = AlbumFactory::createAlbum(1);
     //std::cout << a;
+
     return 0;
 }
 

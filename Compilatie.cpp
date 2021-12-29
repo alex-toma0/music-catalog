@@ -17,8 +17,8 @@ std::shared_ptr<Album> Compilatie::duplicateAlbum() const {
 }
 
 std::ostream &Compilatie::printAlbum(std::ostream &out) const {
-    out << "Titlu album: " << getTitlu() << ", Lungime: " << getLungime() / 3600 << ":"
-        << getLungime() / 60 << ":" << getLungime() % 60
+    out << "Titlu album: " << titlu << ", Lungime: " << lungime / 3600 << ":"
+        << lungime / 60 << ":" << lungime % 60
         << ", Nr. melodii: " << getMelodii().size() << "\nMelodii:\n";
     for (size_t i = 0; i < getMelodii().size(); i++) {
 
@@ -42,7 +42,7 @@ void Compilatie::play(size_t index_melodie) const {
         throw Exception("Mixerul nu a putut fi initializat\n");
     }
 
-    std::string path = "songs/" + melodie_curenta.nume + ".ogg";
+    std::string path = "songs/" + melodie_curenta.nume + ".wav";
 
     Mix_Music *music = Mix_LoadMUS(path.c_str());
     if (music == NULL) {
@@ -87,12 +87,13 @@ void Compilatie::shuffle() const {
     std::uniform_int_distribution<> distr_2(1, 2);
     size_t index_melodie = distr(generator);
     index_melodie--;
+    size_t previous_shuffle = GlobalShuffle::instance()->getVal();
     if (index_melodie == previous_shuffle && index_melodie != this->melodii.size() - 1) {
-        index_melodie = index_melodie + distr_2(generator);
+        index_melodie = index_melodie + 1;
     }
 
     if (index_melodie == previous_shuffle && index_melodie == this->melodii.size() - 1)
-        index_melodie = index_melodie - distr_2(generator);
+        index_melodie = index_melodie - 1;
 
 
     Melodie melodie_curenta = this->melodii[index_melodie];
@@ -104,11 +105,12 @@ void Compilatie::shuffle() const {
         throw Exception("Mixerul nu a putut fi initializat\n");
     }
 
-    std::string path = "songs/" + melodie_curenta.nume + ".ogg";
+    std::string path = "songs/" + melodie_curenta.nume + ".wav";
 
     Mix_Music *music = Mix_LoadMUS(path.c_str());
     if (music == NULL) {
-        throw Exception("Fisierul audio nu a putut fi gasit\n");
+        //throw Exception("Fisierul audio nu a putut fi gasit\n");
+        throw Exception(Mix_GetError());
     }
 
 
@@ -121,7 +123,7 @@ void Compilatie::shuffle() const {
     std::cin >> user_input;
 
     if (index_melodie == this->melodii.size() - 1)
-        throw Exception("Albumul s-a terminat!\n");
+        index_melodie = index_melodie - 2;
     if (user_input == 1 && index_melodie > 0) {
         std::this_thread::sleep_for(std::chrono::seconds(1 / 4));
         previous_shuffle = index_melodie;

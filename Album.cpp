@@ -4,7 +4,7 @@
 
 #include "Album.h"
 
-size_t previous_shuffle = -1;
+//size_t previous_shuffle = -1;
 
 std::string Album::getTitlu() const {
     return titlu;
@@ -29,7 +29,7 @@ Album::Album(const std::string &titlu,
              const std::vector<Melodie> &melodii) : titlu{titlu}, an{an}, melodii{melodii} {
     lungime = 0;
     for (size_t i = 0; i < getMelodii().size(); i++) {
-        lungime += melodii[i].getLungime();
+        lungime += melodii[i].lungime;
     }
 }
 
