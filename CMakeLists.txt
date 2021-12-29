@@ -33,7 +33,7 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC external/SDL_mixer/include
         )
 
-target_link_libraries(music_catalog SDL2 SDL2main SDL2_mixer)
+target_link_libraries(music_catalog SDL2 SDL2_mixer)
 
 
 
