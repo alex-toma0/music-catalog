@@ -9,6 +9,7 @@
 #include "AlbumFactory.h"
 #include "GlobalShuffle.h"
 
+#undef main // pentru compatibilitate pe windows
 int main() {
 
 

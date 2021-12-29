@@ -21,7 +21,7 @@ target_include_directories(${PROJECT_NAME}
         PUBLIC external/SDL_mixer/include
         )
 
-target_link_libraries(music_catalog SDL2 SDL2_mixer)
+target_link_libraries(music_catalog SDL2main SDL2 SDL2_mixer)
 
 
 
