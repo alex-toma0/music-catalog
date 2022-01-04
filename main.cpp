@@ -9,8 +9,8 @@
 #include "AlbumFactory.h"
 #include "GlobalShuffle.h"
 
-#undef main // pentru compatibilitate pe windows
-int main() {
+
+int main(int argc, char **argv) {
 
 
     // adaugare
@@ -67,7 +67,8 @@ int main() {
     );
 
     //std::cout << Metallica;
-
+    //Metallica.likeness(DaftPunk);
+    //Metallica.search("melodie","Battery");
     try {
         // play la prima compilatie, incepand de la prima melodie.
         //Metallica.getCompilatii()[0].play(1);

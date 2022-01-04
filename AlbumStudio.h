@@ -7,6 +7,7 @@
 
 #include "Album.h"
 #include <iostream>
+#include "SDLWrapper.h"
 
 class AlbumStudio : public Album {
 private:

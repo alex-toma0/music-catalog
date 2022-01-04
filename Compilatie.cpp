@@ -1,5 +1,6 @@
 
 #include "Compilatie.h"
+#include "SDLWrapper.h"
 
 
 const std::vector<std::string> &Compilatie::getParinte() const {
@@ -33,24 +34,8 @@ void Compilatie::play(size_t index_melodie) const {
 
     index_melodie--;
     Melodie melodie_curenta = this->melodii[index_melodie];
-
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
-        throw Exception("SDL not initialized\n");
-    }
-
-    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2024) < 0) {
-        throw Exception("Mixerul nu a putut fi initializat\n");
-    }
-
     std::string path = "songs/" + melodie_curenta.nume + ".wav";
-
-    Mix_Music *music = Mix_LoadMUS(path.c_str());
-    if (music == NULL) {
-        throw Exception("Fisierul audio nu a putut fi gasit\n");
-    }
-
-
-    Mix_PlayMusic(music, 1);
+    SDLWrapper player_melodii(path);
 
     std::cout << "Now playing: " << index_melodie + 1 << ". " << melodie_curenta << " de pe albumul "
               << this->albume_parinte[index_melodie] << "\n";
@@ -72,19 +57,17 @@ void Compilatie::play(size_t index_melodie) const {
 
 
     if (user_input == 3) {
-        Mix_FreeMusic(music);
-        SDL_Quit();
+        player_melodii.~SDLWrapper();
     }
-    Mix_FreeMusic(music);
-    SDL_Quit();
+
 }
 
 void Compilatie::shuffle() const {
 
     std::random_device rd;
     std::mt19937 generator(rd());
-    std::uniform_int_distribution<> distr(1, this->melodii.size());
-    std::uniform_int_distribution<> distr_2(1, 2);
+    static std::uniform_int_distribution<> distr(1, this->melodii.size());
+    static std::uniform_int_distribution<> distr_2(1, 2);
     size_t index_melodie = distr(generator);
     index_melodie--;
     size_t previous_shuffle = GlobalShuffle::instance()->getVal();
@@ -97,24 +80,8 @@ void Compilatie::shuffle() const {
 
 
     Melodie melodie_curenta = this->melodii[index_melodie];
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
-        throw Exception("SDL not initialized\n");
-    }
-
-    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2024) < 0) {
-        throw Exception("Mixerul nu a putut fi initializat\n");
-    }
-
     std::string path = "songs/" + melodie_curenta.nume + ".wav";
-
-    Mix_Music *music = Mix_LoadMUS(path.c_str());
-    if (music == NULL) {
-        //throw Exception("Fisierul audio nu a putut fi gasit\n");
-        throw Exception(Mix_GetError());
-    }
-
-
-    Mix_PlayMusic(music, 1);
+    SDLWrapper player_melodii(path);
 
     std::cout << "Now playing: " << index_melodie + 1 << ". " << melodie_curenta << " de pe albumul "
               << this->albume_parinte[index_melodie] << "\n";
@@ -138,10 +105,8 @@ void Compilatie::shuffle() const {
 
 
     if (user_input == 3) {
-        Mix_FreeMusic(music);
-        SDL_Quit();
+        player_melodii.~SDLWrapper();
     }
-    Mix_FreeMusic(music);
-    SDL_Quit();
+
 
 }
