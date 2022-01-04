@@ -9,6 +9,7 @@
 #include "AlbumFactory.h"
 #include "GlobalShuffle.h"
 
+#undef main // nu merge pe MinGW fara asta
 
 int main(int argc, char **argv) {
 
