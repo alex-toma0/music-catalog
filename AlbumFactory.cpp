@@ -6,7 +6,7 @@
 #include "AlbumStudio.h"
 #include "Compilatie.h"
 
-Album *AlbumFactory::createAlbum(int tip) {
+std::shared_ptr<Album> AlbumFactory::createAlbum(int tip) {
     Album *album = NULL;
     switch (tip) {
         case 1: {
@@ -21,5 +21,5 @@ Album *AlbumFactory::createAlbum(int tip) {
     if (album == NULL) {
         throw Exception("Tipul obiectului invalid, nu a fost creat");
     }
-    return album;
+    return album->clone();
 }

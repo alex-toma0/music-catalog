@@ -21,18 +21,16 @@ public:
 
     Compilatie(const std::string &titlu,
                const int &an,
-               const std::vector<Melodie> &melodii, const std::vector<std::string> &albume_parinte);
+               const std::vector<Melodie<int>> &melodii, const std::vector<std::string> &albume_parinte);
 
 // afisare
     virtual std::ostream& printAlbum(std::ostream &out) const override;
 
 // functie de duplicare
-    std::shared_ptr<Album> duplicateAlbum() const override;
-    void play(size_t index_melodie) const;
-    void shuffle() const;
+    std::shared_ptr<Album> clone() const override;
+
 
 };
-
 
 
 #endif //MUSIC_CATALOG_COMPILATIE_H

@@ -18,7 +18,7 @@ endif()
 
 add_subdirectory(external/SDL)
 add_subdirectory(external/SDL_mixer)
-add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h GlobalShuffle.cpp GlobalShuffle.h SDLWrapper.cpp SDLWrapper.h)
+add_executable(music_catalog main.cpp Melodie.cpp Melodie.h Album.h Album.cpp Artist.cpp Artist.h AlbumStudio.cpp AlbumStudio.h Compilatie.cpp Compilatie.h Exception.cpp Exception.h AlbumFactory.cpp AlbumFactory.h GlobalShuffle.cpp GlobalShuffle.h SDLWrapper.cpp SDLWrapper.h tempPrint.h tempPrint.cpp)
 #if (MSVC)
     #add_compile_options(/W4)
 #else ()

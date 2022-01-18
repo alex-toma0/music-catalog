@@ -16,31 +16,20 @@
 class Artist {
 private:
     std::string nume, gen_muzical, tara;
-    std::vector<AlbumStudio> albume_studio;
-    std::vector<Compilatie> compilatii;
+    std::vector<std::shared_ptr<Album>> albume;
 
 public:
 
-    const std::vector<AlbumStudio> &getAlbumeStudio() const;
+    const std::vector<std::shared_ptr<Album>> &getAlbume() const;
 
-    const std::vector<Compilatie> &getCompilatii() const;
 
-    // constructor de baza
-    Artist();
+    Artist() = default;
 
     // constructor init
-    Artist(const std::string &nume, const std::string &gen_muzical, const std::string &tara,
-           const std::vector<AlbumStudio> &albume_studio, const std::vector<Compilatie> &compilatii);
 
-    Artist(const std::string &nume, const std::string &gen_muzical, const std::string &tara,
-           const std::vector<AlbumStudio> &albume_studio);
+    Artist(const std::string &nume, const std::string &genMuzical, const std::string &tara,
+           const std::vector<std::shared_ptr<Album>> &albume);
 
-    Artist(const std::string &nume, const std::string &gen_muzical, const std::string &tara,
-           const std::vector<Compilatie> &compilatii);
-
-    Artist(const std::vector<AlbumStudio> &albume_studio);
-
-    Artist(const std::vector<Compilatie> &compilatii);
 
     // constructor de copiere
     Artist(const Artist &a);
@@ -49,19 +38,17 @@ public:
     Artist &operator=(const Artist &a);
 
     //destructor
-    ~Artist();
+    ~Artist() = default;
 
     // operator <<
     friend std::ostream &operator<<(std::ostream &out, const Artist &a);
 
-    // functie de search pentru un album
+    // functie de search pentru un album/ melodie
     void search(std::string tip, std::string item);
 
     // functie care determina daca doi artisti seamana (bazat pe genul muzical)
     void likeness(const Artist &b);
 
-    // functii care insereaza albume noi
-    void insertAlbumStudio(const AlbumStudio &albume_studio);
 
 };
 

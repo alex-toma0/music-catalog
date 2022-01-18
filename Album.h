@@ -23,7 +23,7 @@ class Album {
 protected:
     std::string titlu;
     int lungime, an;
-    std::vector<Melodie> melodii;
+    std::vector<Melodie<int>> melodii;
 
 
 public:
@@ -34,17 +34,14 @@ public:
     // destructor
     ~Album() = default;
 
+
     Album(const std::string &titlu,
           const int &an,
-          const std::vector<Melodie> &melodii);
+          const std::vector<Melodie<int>> &melodii);
 
     std::string getTitlu() const;
 
-    const std::vector<Melodie> &getMelodii() const;
-
-    int getLungime() const;
-
-    int getNr() const;
+    const std::vector<Melodie<int>> &getMelodii() const;
 
     int getAn() const;
 
@@ -57,13 +54,13 @@ public:
 
 
     // functie care duplica un album (tipul albumului este determinat in clasele derivate)
-    virtual std::shared_ptr<Album> duplicateAlbum() const = 0;
+    virtual std::shared_ptr<Album> clone() const = 0;
 
 
     // functie de play, incepand de la indexMelodie (1 <= indexMelodie <= nr. melodii)
-    virtual void play(size_t indexMelodie) const = 0;
+    virtual void play(size_t indexMelodie) const;
 
-    virtual void shuffle() const = 0;
+    virtual void shuffle() const;
 
 
 };

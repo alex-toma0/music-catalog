@@ -10,7 +10,7 @@
 
 class AlbumFactory {
 public:
-    static Album *createAlbum(int tip);
+    static std::shared_ptr<Album> createAlbum(int tip);
 
 
 };
