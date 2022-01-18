@@ -45,20 +45,20 @@ Ex: Pink Floyd (Rock Progresiv) seamana cu Led Zeppelin (Hard Rock) deoarece sub
 - săptămâna 9 (4 decembrie): (eventuale) modificări în urma feedback-ului
 
 #### Cerințe
-- [ ] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
-- [ ] moșteniri
-  - [ ] funcții virtuale (pure)
-  - [ ] apelarea constructorului din clasa de bază 
-  - [ ] smart pointers / pointeri normali și verificat să nu fie memory leaks
-- [ ] excepții
-  - [ ] predefinite
-  - [ ] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
-  - [ ] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
-- [ ] funcții și atribute `static`
-- [ ] STL
-- [ ] cât mai multe `const`
-- [ ] la fel ca mai sus, apelarea tuturor funcțiilor publice din `main`
-- [ ] încă un tag de `git`: de exemplu `v0.2`
+- [x ] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
+- [x ] moșteniri
+  - [x ] funcții virtuale (pure)
+  - [ x] apelarea constructorului din clasa de bază 
+  - [ x] smart pointers / pointeri normali și verificat să nu fie memory leaks
+- [ x] excepții
+  - [x ] predefinite
+  - [ x] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
+  - [ x] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
+- [ x] funcții și atribute `static`
+- [ x] STL
+- [ x] cât mai multe `const`
+- [ x] la fel ca mai sus, apelarea tuturor funcțiilor publice din `main`
+- [ x] încă un tag de `git`: de exemplu `v0.2`
 
 ## Tema 3
 
@@ -68,9 +68,9 @@ Ex: Pink Floyd (Rock Progresiv) seamana cu Led Zeppelin (Hard Rock) deoarece sub
 - săptămâna 12 (22-29 decembrie): (eventuale) modificări în urma feedback-ului
 
 #### Cerințe
-- [ ] 2 design patterns
-- [ ] funcții și clase șablon (`template`)
-- [ ] un ultim (?) tag de `git`: de exemplu `v0.3` sau `v1.0`
+- [ x] 2 design patterns
+- [ x] funcții și clase șablon (`template`)
+- [ x] un ultim (?) tag de `git`: de exemplu `v0.3` sau `v1.0`
 
 ## Resurse
 
