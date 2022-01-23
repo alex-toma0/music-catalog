@@ -1,7 +1,7 @@
 
+#include <set>
 #include "Compilatie.h"
 #include "SDLWrapper.h"
-
 
 const std::vector<std::string> &Compilatie::getParinte() const {
     return albume_parinte;
@@ -26,6 +26,19 @@ std::ostream &Compilatie::printAlbum(std::ostream &out) const {
     }
 
     return out;
+}
+
+void Compilatie::variety() const {
+    std::set<std::string> s;
+    size_t size = albume_parinte.size();
+    for (size_t i=0; i<size; i++) {
+            s.insert(albume_parinte[i]);
+    }
+    if(s.size() == 0)
+        std::cout <<"0% varietate, melodiile sunt de pe acelasi album\n";
+    else {
+        std::cout << (float) s.size() / size * 100 << " % varietate\n";
+    }
 }
 
 

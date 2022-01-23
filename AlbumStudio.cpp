@@ -33,6 +33,9 @@ std::ostream &AlbumStudio::printAlbum(std::ostream &out) const {
     return out;
 }
 
+void AlbumStudio::variety() const {
+    std::cout << "0% varietate, melodiile sunt de pe acelasi album\n";
+}
 
 
 

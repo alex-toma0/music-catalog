@@ -56,11 +56,14 @@ public:
     // functie care duplica un album (tipul albumului este determinat in clasele derivate)
     virtual std::shared_ptr<Album> clone() const = 0;
 
-
     // functie de play, incepand de la indexMelodie (1 <= indexMelodie <= nr. melodii)
     virtual void play(size_t indexMelodie) const;
 
+    // functie de shuffle
     virtual void shuffle() const;
+
+    // functie care calculeaza cat de variat este un album
+    virtual void variety() const = 0;
 
 
 };

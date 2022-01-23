@@ -61,9 +61,9 @@ int main(int argc, char **argv) {
                                                    Melodie<int>("Leper Messiah", 345),
                                                    Melodie<int>("Orion", 730),
                                                    Melodie<int>("Damage, Inc.", 617)},
-                       {"Master of Puppets", "Master of Puppets", "Master of Puppets",
-                        "Master of Puppets", "Master of Puppets", "Master of Puppets",
-                        "Master of Puppets", "Master of Puppets"}).clone()}
+                       {"Master of Puppets", "Ride The Lightning", "Master of Puppets",
+                        "Master of Puppets", "Ride The Lightning", "Master of Puppets",
+                        "Master of Puppets", "Black Album"}).clone()}
 
 
     );
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 
 
 
-
+/*
     try {
 
         // play + shuffle
@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
                 what();
 
     }
-
+*/
 
     // exemplificare factory
     //std::shared_ptr<Album> af = AlbumFactory::createAlbum(1);
@@ -100,6 +100,8 @@ int main(int argc, char **argv) {
     //functie template
     // tempPrint(Metallica);
 
+    // exemplificare variety()
+    Metallica.getAlbume()[1]->variety();
 
     return 0;
 }

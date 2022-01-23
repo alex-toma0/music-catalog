@@ -26,7 +26,7 @@ public:
 
     std::shared_ptr<Album> clone() const override;
 
-
+    void variety() const override;
 };
 
 

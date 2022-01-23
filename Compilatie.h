@@ -29,7 +29,7 @@ public:
 // functie de duplicare
     std::shared_ptr<Album> clone() const override;
 
-
+    virtual void variety() const override;
 };
 
 
